@@ -12,9 +12,9 @@ function App() {
       <Navbar />
       <div style={{ display: "flex" }}>
         <div style={{ width: openNavbar ? "15vw" : "5vw" }} className="navbar">
-          <SideBar openNavbar={openNavbar} setOpenNavbar={setOpenNavbar} />
+          {/* <SideBar openNavbar={openNavbar} setOpenNavbar={setOpenNavbar} /> */}
         </div>
-        <div style={{ height: "1000vh" }}>
+        <div style={{ height: "100vh" }}>
           <Body />
         </div>
       </div>

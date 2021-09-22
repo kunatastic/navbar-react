@@ -1,32 +1,30 @@
-import React from "react";
+// import React from "react";
 
-const Body = () => {
-  return <div
-  style={{
-  
- float:"left",
-  }}>
+// const Body = () => {
+//   return <div
+//   style={{
 
-    <h1>Program Manager</h1>
-     <hr size="4" width="40%" color="black"></hr> 
-    <br/>
-    <div class="spacing">
-    <h4>Fitness Nutrition Journey</h4>
-    <hr size="4" width="500%" color="black"></hr> 
-  
-    </div>
- 
-  </div>;
-};
+//  float:"left",
+//   }}>
 
-export default Body;
+//     <h1>Program Manager</h1>
+//      <hr size="4" width="40%" color="black"></hr>
+//     <br/>
+//     <div class="spacing">
+//     <h4>Fitness Nutrition Journey</h4>
+//     <hr size="4" width="500%" color="black"></hr>
 
-/*
-import React from 'react'
-import styled from 'styled-components'
-import { useTable, useSortBy } from 'react-table'
+//     </div>
 
-import makeData from "./makedata"
+//   </div>;
+// };
+
+// export default Body;
+
+import React, { useState } from "react";
+import styled from "styled-components";
+import { useTable, useSortBy } from "react-table";
+import { BsChatSquare } from "react-icons/bs";
 
 const Styles = styled.div`
   padding: 1rem;
@@ -55,123 +53,75 @@ const Styles = styled.div`
       }
     }
   }
-`
+`;
 
 function Table({ columns, data }) {
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable(
-    {
-      columns,
-      data,
-    },
-    useSortBy
-  )
-
-  // We don't want to render all 2000 rows for this example, so cap
-  // it at 20 for this use case
-  const firstPageRows = rows.slice(0, 20)
+  const cards = [
+    { name: "0", lname: "10", isActive: false, logo: 1 },
+    { name: "1", lname: "11", isActive: false },
+    { name: "2", lname: "12", isActive: true },
+    { name: "3", lname: "13", isActive: true },
+    { name: "4", lname: "14", isActive: false },
+    { name: "5", lname: "15", isActive: false },
+  ];
 
   return (
-    <>
-      <table {...getTableProps()}>
-        <thead>
-          {headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
-                // Add the sorting props to control sorting. For this example
-                // we can add them into the header props
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  {column.render('Header')}
-                  {/* Add a sort direction indicator */
-                /* }
-                  
-                  <span>
-                    {column.isSorted
-                      ? column.isSortedDesc
-                        ? ' 🔽'
-                        : ' 🔼'
-                      : ''}
-                  </span>
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {firstPageRows.map(
-            (row, i) => {
-              prepareRow(row);
-              return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map(cell => {
-                    return (
-                      <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                    )
-                  })}
-                </tr>
-              )}
-          )}
-        </tbody>
-      </table>
-      <br />
-      <div>Showing the first 20 results of {rows.length} rows</div>
-    </>
-  )
+    <table>
+      <tr>
+        <th>HELLO</th>
+        <th>HELLO</th>
+        <th>HELLO</th>
+      </tr>
+      <tr>
+        {cards.map((i) => (
+          <td>
+            <Card kunal={i} />
+          </td>
+        ))}
+      </tr>
+    </table>
+  );
 }
 
-function App() {
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: 'Name',
-        columns: [
-          {
-            Header: 'First Name',
-            accessor: 'firstName',
-          },
-          {
-            Header: 'Last Name',
-            accessor: 'lastName',
-          },
-        ],
-      },
-      {
-        Header: 'Info',
-        columns: [
-          {
-            Header: 'Age',
-            accessor: 'age',
-          },
-          {
-            Header: 'Visits',
-            accessor: 'visits',
-          },
-          {
-            Header: 'Status',
-            accessor: 'status',
-          },
-          {
-            Header: 'Profile Progress',
-            accessor: 'progress',
-          },
-        ],
-      },
-    ],
-    []
-  )
-
-  const data = React.useMemo(() => makeData(2000), [])
+function Card(props) {
+  // const {} = props;
+  console.log(props);
+  const [isActive, setIsActive] = useState(props.kunal.isActive);
 
   return (
-    <Styles>
-      <Table columns={columns} data={data} />
-    </Styles>
-  )
-}*/
+    <div
+      style={{ height: "10vh", width: "100%", backgroundColor: "palegreen" }}
+    >
+      {props.kunal.name} - {props.kunal.lname}
+      {isActive ? (
+        <button
+          style={{ backgroundColor: "green" }}
+          onClick={() => setIsActive(false)}
+        >
+          Active
+        </button>
+      ) : (
+        <button
+          style={{ backgroundColor: "red" }}
+          onClick={() => setIsActive(true)}
+        >
+          Deactive
+        </button>
+      )}
+      {!isActive && (
+        // <div
+        //   style={{
+        //     height: "20vh",
+        //     width: "20vh",
+        //     backgroundColor: "orange",
+        //     borderRadius: "50%",
+        //   }}
+        // ></div>
+        <span>{props.kunal.logo}</span>
+      )}
+      {props.kunal.logo === 3 && <BsChatSquare />}
+    </div>
+  );
+}
 
-
+export default Table;
