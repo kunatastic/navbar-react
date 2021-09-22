@@ -37,8 +37,8 @@ const NavBar = (props) => {
             </div>
             {openNavbar && (
               <div>
-                <div className="profile-head">Walter Whiteman</div>
-                <div className="profile-desp">Coach & chemistry Teacher</div>
+                <div className="profile-head">Jesse Pinkman</div>
+                <div className="profile-desp">Fitness & Nutrition Coach</div>
               </div>
             )}
           </div>
